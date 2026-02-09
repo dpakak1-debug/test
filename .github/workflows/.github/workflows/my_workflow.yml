@@ -1,0 +1,25 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - "**"          # runs on pushes to any branch
+  pull_request:
+    branches:
+      - main          # runs when a PR targets main
+
+jobs:
+  demo-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Print trigger info
+        run: |
+          echo "Workflow triggered!"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Branch/ref: ${{ github.ref }}"
+          echo "Repository: ${{ github.repository }}"
+         
